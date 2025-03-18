@@ -1,8 +1,10 @@
 package frc.robot.commands;
 
 import frc.robot.Constants;
+// import frc.robot.subsystems.LED;
 //import frc.robot.States;
 import frc.robot.subsystems.Swerve;
+//import frc.robot.subsystems.LED.Colors;
 
 import java.util.function.BooleanSupplier;
 import java.util.function.DoubleSupplier;
@@ -29,6 +31,9 @@ public class SwerveCommand extends Command {
 
     private BooleanSupplier aprilAlineLeft;
     private BooleanSupplier aprilAlineRight;
+
+   // private LED leds;
+
     
 
     public SwerveCommand(Swerve s_Swerve, DoubleSupplier translationSup, DoubleSupplier strafeSup, DoubleSupplier rotationSup, BooleanSupplier robotCentricSup, BooleanSupplier dampen, DoubleSupplier dynamicHeadingSup, BooleanSupplier m_aprilAlineLeft, BooleanSupplier m_aprilAlineRight) {
@@ -39,6 +44,7 @@ public class SwerveCommand extends Command {
         rotationController = new PIDController(Constants.Swerve.HeadingKP, Constants.Swerve.HeadingKI, Constants.Swerve.HeadingKD );
         rotationController.enableContinuousInput(-Math.PI, Math.PI);
         rotationController.setTolerance(Constants.Swerve.HeadingTolerence);
+        //leds = new LED();
 
         this.translationSup = translationSup;
         this.strafeSup = strafeSup;
@@ -53,6 +59,7 @@ public class SwerveCommand extends Command {
 
     @Override
     public void execute() {
+       
         /* Get Values, Deadband, Dampen */
         double translationVal = MathUtil.applyDeadband(translationSup.getAsDouble(), Constants.stickDeadband) * (dampenSup.getAsBoolean() ? 0.2 : 1);
         double strafeVal = MathUtil.applyDeadband(strafeSup.getAsDouble(), Constants.stickDeadband) * (dampenSup.getAsBoolean() ? 0.2 : 1);
@@ -63,16 +70,17 @@ public class SwerveCommand extends Command {
         rotationVal = rotationVal * Constants.Swerve.maxAngularVelocity;
 
         if(this.aprilAlineLeft.getAsBoolean()){
-
-            strafeVal = (16 - LimelightHelpers.getTX("limelight-mine"))* 0.01;
+            strafeVal = (11 + LimelightHelpers.getTX("limelight-mine"))* 0.01;
             SmartDashboard.putNumber("Strafe val", strafeVal);
             SmartDashboard.putNumber("TX", LimelightHelpers.getTX("limelight-mine"));
             fieldRelative = false;
+            //leds.setColor(Colors.kPurple);
         }else if(this.aprilAlineRight.getAsBoolean()){
-            strafeVal = (23 + LimelightHelpers.getTX("limelight-mine"))* -0.01;
+            strafeVal = (11 - LimelightHelpers.getTX("limelight-mine"))* -0.01;
             SmartDashboard.putNumber("Strafe val", strafeVal);
             SmartDashboard.putNumber("TX", LimelightHelpers.getTX("limelight-mine"));
             fieldRelative = false; 
+            //leds.setColor(Colors.kPurple);
         }
         else{
             fieldRelative = true;

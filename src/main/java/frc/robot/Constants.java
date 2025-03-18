@@ -55,13 +55,13 @@ public final class Constants {
         public static final SensorDirectionValue cancoderInvert = chosenModule.cancoderInvert;
 
         /* Swerve Current Limiting */
-        public static final int angleCurrentLimit = 25;
-        public static final int angleCurrentThreshold = 40;
+        public static final int angleCurrentLimit = 30;
+        public static final int angleCurrentThreshold = 30;
         public static final double angleCurrentThresholdTime = 0.1;
         public static final boolean angleEnableCurrentLimit = true;
 
-        public static final int driveCurrentLimit = 40;
-        public static final int driveCurrentThreshold = 60;
+        public static final int driveCurrentLimit = 30;
+        public static final int driveCurrentThreshold = 30;
         public static final double driveCurrentThresholdTime = 0.1;
         public static final boolean driveEnableCurrentLimit = true;
 
@@ -89,7 +89,7 @@ public final class Constants {
         public static final double HeadingTolerence = 0;
 
         //Motor power gain
-        public static final double drivePower = 1;
+        public static final double drivePower = 0.3;
         public static final double anglePower = .9;
 
 
@@ -131,8 +131,8 @@ public final class Constants {
         
         /* Back Left Module - Module 2 */
         public static final class Mod2 { //TODO: This must be tuned to specific robot
-            public static final int driveMotorID = 9;
-            public static final int angleMotorID = 8;
+            public static final int driveMotorID = 8;
+            public static final int angleMotorID = 9;
             public static final int canCoderID = 12;
             public static final Rotation2d angleOffset = Rotation2d.fromDegrees(-52.646488);
             public static final SwerveModuleConstants constants = 
@@ -150,32 +150,29 @@ public final class Constants {
         }
     }
     public static final class ElevatorConstants{
-        public static final int LeadMotorID = 14;
-        public static final int FollowMotorID = 15;
+        public static final int LiftMotorID = 14;
+        public static final int LockServoID = 0;
         
         public static final class ElevatorSetPoints{
-            public static final int kLevel1 = 0;
-            public static final int kLevel2 = 31;
-            public static final int kLevel3 = 70;
-            public static final int kLevel4 = 114;
+            public static final int kIntakeL = 0;
+            public static final int kLevel1 = -45;
+            public static final int kLevel2 = -120;
+            public static final int kMax = -140;
          }
     }
     public static final class IntakeConstants{
         public static final int IntakeMotorID = 16;
         public static final int CoralSensorID = 0;
         public static final class IntakeSpeeds{
-            public static final double intakeSpeed = 0.28f;
-            public static final double shootSpeed = 0.8f;
+            public static final double intakeSpeed = 0.2f;
+            public static final double shootSpeed = 1f;
             public static final double stop = 0;
         }
     }
     public static final class IOConstatnts{
         public static final int kLevel1IO = 8;
         public static final int kLevel2IO = 7;
-        public static final int kLevel3IO = 6;
-        public static final int kLevel4IO = 5;
         public static final int kIntakeIO = 2;
-        public static final int kOuttakeIO = 1;
     }
 
     
@@ -188,11 +185,11 @@ public final class Constants {
         public static final double kMaxAngularSpeedRadiansPerSecondSquared = Math.PI;
 
         //TODO: Must be tuned to specific robot
-        public static final PIDConstants translationPID = new PIDConstants(0, 0, 0);
-        public static final PIDConstants rotationPID = new PIDConstants(0, 0, 0);
+        public static final PIDConstants translationPID = new PIDConstants(0.01, 0, 0);
+        public static final PIDConstants rotationPID = new PIDConstants(0.01, 0, 0);
 
         //TODO: Must be tuned to specific robot
-        public static final double ROBOT_MASS_KG = 74.088;
+        public static final double ROBOT_MASS_KG = 42;
         public static final double ROBOT_MOI = 6.883;
         public static final double WHEEL_COF = 1.2;
 
