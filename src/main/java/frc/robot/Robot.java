@@ -20,7 +20,7 @@ import frc.robot.subsystems.LED.Colors;
  */
 public class Robot extends LoggedRobot {
   public static HardwareConfigs hardwareConfigs;
-
+  private Command m_autoCommand;
 
 
   private RobotContainer m_robotContainer;
@@ -64,7 +64,9 @@ public class Robot extends LoggedRobot {
   /** This autonomous runs the autonomous command selected by your {@link RobotContainer} class. */
   @Override
   public void autonomousInit() {
-    m_robotContainer.getAutonomousCommand().schedule();
+    m_autoCommand = m_robotContainer.getAutonomousCommand();
+
+    m_autoCommand.schedule();
    
   }
 
@@ -80,7 +82,9 @@ public class Robot extends LoggedRobot {
     // teleop starts running. If you want the autonomous to
     // continue until interrupted by another command, remove
     // this line or comment it out.
-    
+    if(m_autoCommand != null){
+      m_autoCommand.cancel();
+    }
   }
 
   /** This function is called periodically during operator control. */

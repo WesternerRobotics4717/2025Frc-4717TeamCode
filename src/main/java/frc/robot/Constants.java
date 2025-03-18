@@ -28,8 +28,8 @@ public final class Constants {
         COTSNeoSwerveConstants.SDSMK4i(driveGearRatios.SDSMK4i_L3);
 
         /* Drivetrain Constants */
-        public static final double trackWidth = Units.inchesToMeters(24); //TODO: This must be tuned to specific robot
-        public static final double wheelBase = Units.inchesToMeters(24); //TODO: This must be tuned to specific robot
+        public static final double trackWidth = Units.inchesToMeters(29.5); //TODO: This must be tuned to specific robot
+        public static final double wheelBase = Units.inchesToMeters(29.5); //TODO: This must be tuned to specific robot
         public static final double wheelCircumference = chosenModule.wheelCircumference;
 
         public static final double driveRevToMeters =  wheelCircumference / (chosenModule.driveGearRatio);
@@ -179,19 +179,19 @@ public final class Constants {
 
 
      public static final class AutoConstants { //TODO: The below constants are used in the example auto, and must be tuned to specific robot
-        public static final double kMaxSpeedMetersPerSecond = 3;
-        public static final double kMaxAccelerationMetersPerSecondSquared = 3;
+        public static final double kMaxSpeedMetersPerSecond = 1;
+        public static final double kMaxAccelerationMetersPerSecondSquared = 1;
         public static final double kMaxAngularSpeedRadiansPerSecond = Math.PI;
         public static final double kMaxAngularSpeedRadiansPerSecondSquared = Math.PI;
 
         //TODO: Must be tuned to specific robot
-        public static final PIDConstants translationPID = new PIDConstants(0.01, 0, 0);
-        public static final PIDConstants rotationPID = new PIDConstants(0.01, 0, 0);
+        public static final PIDConstants translationPID = new PIDConstants(Swerve.driveKP, Swerve.driveKI, Swerve.driveKD);
+        public static final PIDConstants rotationPID = new PIDConstants(Swerve.HeadingKP, Swerve.HeadingKI, Swerve.HeadingKD);
 
         //TODO: Must be tuned to specific robot
         public static final double ROBOT_MASS_KG = 42;
         public static final double ROBOT_MOI = 6.883;
-        public static final double WHEEL_COF = 1.2;
+        public static final double WHEEL_COF = 1.7;
 
         public static final ModuleConfig moduleConfig = new ModuleConfig(
                 (Constants.Swerve.chosenModule.wheelDiameter / 2),

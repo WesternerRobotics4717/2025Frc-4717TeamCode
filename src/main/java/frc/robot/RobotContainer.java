@@ -1,6 +1,7 @@
 package frc.robot;
 
 import com.pathplanner.lib.auto.AutoBuilder;
+import com.pathplanner.lib.commands.PathPlannerAuto;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
@@ -101,9 +102,9 @@ public class RobotContainer {
 
     public Command getAutonomousCommand() {
         // An ExampleCommand will run in autonomous
-        //return new PathPlannerAuto("Example Auto");
-        return new SwerveCommand(s_Swerve, ()-> -0.4, () -> 0, () -> 0, () -> false, () -> false, () -> 0, () -> false, () -> false).withTimeout(1).andThen(new SwerveCommand(s_Swerve, ()-> 0, () -> 0, () -> 0, () -> false, () -> false, () -> 0, () -> false, () -> false));//.withTimeout(1).andThen(s_Intake.shootOut()).withTimeout(3).andThen(s_Intake.stopIntake());
+        return new PathPlannerAuto("Auto1");
+       // return new SwerveCommand(s_Swerve, ()-> -0.4, () -> 0, () -> 0, () -> false, () -> false, () -> 0, () -> false, () -> false).withTimeout(1).andThen(new SwerveCommand(s_Swerve, ()-> 0, () -> 0, () -> 0, () -> false, () -> false, () -> 0, () -> false, () -> false));//.withTimeout(1).andThen(s_Intake.shootOut()).withTimeout(3).andThen(s_Intake.stopIntake());
 
-       // return autoChooser.getSelected();
+       //return autoChooser.getSelected();
     }
 }
